@@ -1,0 +1,53 @@
+﻿
+@model List<HM03_19149817.Models.FileModel>
+
+@{
+    ViewBag.Title = "View";
+}
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+</head>
+<br />
+<br />
+<h1>Documents of any file type</h1>
+<h3>Upload Files Folder</h3>
+<br />
+<br />
+<div class="body-content" style="background-color:lightgray">
+    <br />
+    <br />
+    <table class="table">
+        <thead style="background-color:black; color:white">
+            <tr>
+                <th> File Name </th>
+                <th> Download Option </th>
+                <th> Delete Option </th>  
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.FileName)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Download", "Download", new { id = item.Id }, new { @class = "btn btn-success" })
+                    </td>
+                    <td>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+
+    </table>
+    <br />
+    <br />
+</div>

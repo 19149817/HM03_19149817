@@ -1,0 +1,168 @@
+﻿@model List<HM03_19149817.Models.FileModel>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<head>
+    <script src="Scripts/jquery-2.0.3.min.js"></script>
+    <script src="Scripts/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="/js/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+    <link rel="stylesheet" type="text/css" href="/js/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+    <script type="text/javascript" src="/js/fancybox/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<style>
+
+
+    
+    .container {
+        padding: 2px 16px;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+
+    .grid-item {
+        padding: 20px;
+    }
+
+    #fade {
+        display: none;
+        position: fixed;
+        top: 0%;
+        left: 0%;
+        width: 100%;
+        height: 100%;
+        background-color: black;
+        z-index: 1001;
+        -moz-opacity: 0.8;
+        opacity: .80;
+        filter: alpha(opacity=80);
+    }
+
+    #light {
+        display: none;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        max-width: 600px;
+        max-height: 360px;
+        margin-left: -300px;
+        margin-top: -180px;
+        border: 2px solid #FFF;
+        background: #FFF;
+        z-index: 1002;
+        overflow: visible;
+    }
+
+    #boxclose {
+        float: right;
+        cursor: pointer;
+        color: #fff;
+        border: 1px solid #AEAEAE;
+        border-radius: 3px;
+        background: #222222;
+        font-size: 31px;
+        font-weight: bold;
+        display: inline-block;
+        line-height: 0px;
+        padding: 11px 3px;
+        position: absolute;
+        right: 2px;
+        top: 2px;
+        z-index: 1002;
+        opacity: 0.9;
+    }
+
+    .boxclose:before {
+        content: "×";
+    }
+
+    #fade:hover ~ #boxclose {
+        display: none;
+    }
+
+    .test:hover ~ .test2 {
+        display: none;
+    }
+</style>
+<script>
+    window.document.onkeydown = function (e) {
+        if (!e) {
+            e = event;
+        }
+        if (e.keyCode == 27) {
+            lightbox_close();
+        }
+    }
+
+    function lightbox_open() {
+        var lightBoxVideo = document.getElementById("VisaChipCardVideo");
+        window.scrollTo(0, 0);
+        document.getElementById('light').style.display = 'block';
+        document.getElementById('fade').style.display = 'block';
+        lightBoxVideo.play();
+    }
+
+    function lightbox_close() {
+        var lightBoxVideo = document.getElementById("VisaChipCardVideo");
+        document.getElementById('light').style.display = 'none';
+        document.getElementById('fade').style.display = 'none';
+        lightBoxVideo.pause();
+    }
+</script>
+
+<body>
+    <br />
+    <br />
+    <h1>Video Files </h1>
+    <h3>Upload Files Folder</h3>
+    <br />
+    <br />
+    <div class="body-content" style="background-color:lightgray">
+        <br />
+        <br />
+        <div class="grid-container">
+            @foreach (var item in Model)
+            {
+                <div class="card grid-item" style="inset-inline:auto; width:60%">
+
+                    @if (!string.IsNullOrEmpty(item.Link))
+                    {
+
+                        <a onclick="lightbox_open();">
+
+                            <video width="160" height="160"> <source src="@Url.Content(item.Link)" type="video/mp4">
+                                Your browser does not support the video.
+                            </video>
+                        </a>
+                        <br />
+                        <p>@item.FileName</p>
+
+                        <div id="light">
+
+                            <video id="VisaChipCardVideo" width="600" controls>
+                                <source src="@Url.Content(item.Link)" type="video/mp4">
+  
+                            </video>
+                        </div>
+                        <div id="fade" onClick="lightbox_close();"></div>
+
+                    }
+                    <br />
+
+                    @Html.ActionLink("Download", "Download", new { id = item.Id }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+                </div>
+
+            }
+        </div>
+        <br />
+        <br />
+    </div>
+
+</body>
+

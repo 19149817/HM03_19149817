@@ -1,0 +1,122 @@
+﻿<style>
+    .flex-container {
+        display: flex;
+    }
+
+    .flex-child {
+        flex: 1;
+    }
+
+        .flex-child:first-child {
+            margin-right: 20px;
+        }
+</style>
+<div>
+    <h1>My Media.</h1>
+    <h3>Something something blah blahhhhh </h3>
+    <div style="background-color:lightgray">
+        <div class="flex-container">
+
+
+            <div class="flex-child magenta">
+                <div style="margin-left:5%">
+                    <h3>Description</h3>
+                    <p>
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                        Sed id tincidunt elit. Vivamus sit amet purus commodo, fringilla tortor ac, 
+                        efficitur lectus. Donec ornare felis turpis, et facilisis arcu sollicitudin et. 
+                        Ut et cursus elit. Aenean vitae volutpat ante.
+                        Curabitur vestibulum ultrices nulla non vestibulum. 
+                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+                        Donec eget arcu viverra, ullamcorper massa a, vestibulum lectus.
+                        Nulla lectus metus, pretium pharetra rutrum eget, suscipit in ante. 
+                        Phasellus maximus mauris quis bibendum eleifend. Nulla nec mauris rutrum, 
+                        congue lacus at, convallis nisl. Cras pulvinar a mi eu blandit. 
+                        Integer id ornare quam. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae;
+                        Aliquam a laoreet lorem, vitae dignissim libero. Nam sollicitudin dui a dui congue, id lacinia orci rutrum.
+                    </p>
+                    <p>
+                        Duis nibh sapien, laoreet a neque eu, luctus dictum eros. 
+                        Donec sit amet nibh et nulla hendrerit interdum. Praesent fermentum, nisi nec mollis malesuada,
+                        libero urna condimentum quam, nec porttitor odio orci ut est. 
+                        Nunc et nunc sed libero interdum efficitur. Pellentesque vel justo maximus, 
+                        lobortis felis sit amet, elementum ipsum. Vestibulum eu mauris non justo condimentum ultricies ut quis erat. 
+                        Donec at molestie metus. Nunc auctor quis enim sit amet molestie.
+                    </p>
+                    <p>
+                        Curabitur quis ipsum sed lacus iaculis vehicula. Integer turpis tortor, f
+                        aucibus eget gravida vitae, porta in dolor. Cras non arcu sed mauris euismod venenatis eu a mi.
+                        Mauris quis ultrices ante. Maecenas sed turpis ut massa lacinia ornare ut sed turpis. 
+                        Phasellus ac libero vel lacus volutpat rhoncus. Aliquam id libero congue felis semper eleifend.
+                        Suspendisse feugiat mi in sagittis faucibus. Aliquam augue dolor, venenatis nec eleifend quis, 
+                        laoreet vel metus. Aliquam rutrum ligula tellus, eget porta libero eleifend vitae.
+                        Aenean et ligula sit amet massa malesuada placerat non vitae purus. Integer et fermentum dolor.
+                        Praesent luctus suscipit tortor, in consequat neque fringilla vitae.
+                    </p>
+                    <p>
+                        Praesent placerat, erat ac malesuada blandit, tortor quam mollis neque, 
+                        et elementum purus urna at risus. Ut sit amet magna in augue ullamcorper volutpat et sed diam. 
+                        Nunc elementum convallis nibh, eu blandit ligula finibus sit amet. 
+                        Duis porta dui eleifend justo sodales, eget tempus leo mollis. Integer suscipit sodales dui 
+                        eget scelerisque. Mauris tincidunt scelerisque tincidunt. In hac habitasse platea dictumst. 
+                        Praesent mollis nunc dolor, vel mattis risus condimentum vitae. Quisque in enim consectetur, 
+                        porttitor augue ac, sodales metus.
+                    </p>
+                </div>
+            </div>
+
+            <div class="flex-child green">
+                <h3>Option Selection</h3>
+                <br />
+                <table style="width:100%">
+                    <tr>
+                        <td rowspan="2">
+                            @using (Html.BeginForm("Index", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                            {
+
+                                <div>
+                                    <table style="text-align:left">
+                                        <tr>
+                                            <td><label for="paras">Document</label></td>
+                                            <td style="width:20px"><input type="radio" name="ch" value="doc" id="paras" checked="checked" /></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><label for="words">Image</label></td>
+                                            <td style="width:20px"><input type="radio" name="ch" value="img" id="words" /></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><label for="bytes">Video</label></td>
+                                            <td style="width:20px"><input type="radio" name="ch" value="vid" id="bytes" /></td>
+
+                                        </tr>
+                                        <tr>
+
+                                            <td style="width:20px"><input type="file" name="file" id="generate" value="Browse..." /></td>
+
+                                        </tr>
+                                        <tr>
+                                            <td><label for="lists"></label></td>
+                                        </tr>
+                                        <tr>
+
+                                            <td style="width:20px"><input type="submit" name="submit" id="Submit" value="Submit" /></td>
+
+                                        </tr>
+
+                                    </table>
+                                </div>
+                            }
+                        </td>
+
+                    </tr>
+
+                </table>
+
+
+
+            </div>
+        </div>
+    </div>
+</div>

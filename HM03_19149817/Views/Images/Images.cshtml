@@ -1,0 +1,103 @@
+﻿@model List<HM03_19149817.Models.FileModel>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+<head>
+    <script src="Scripts/jquery-2.0.3.min.js"></script>
+    <script src="Scripts/jquery.mousewheel.js"></script>
+    <script type="text/javascript" src="/js/fancybox/jquery.fancybox.js?v=2.1.5"></script>
+    <link rel="stylesheet" type="text/css" href="/js/fancybox/jquery.fancybox.css?v=2.1.5" media="screen" />
+    <script type="text/javascript" src="/js/fancybox/helpers/jquery.fancybox-media.js?v=1.0.6"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+</head>
+
+<style>
+    .card {
+        
+        box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+        transition: 0.3s;
+    }
+
+        .card:hover {
+            box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+        }
+
+    .container {
+        padding: 2px 16px;
+    }
+
+    .grid-container {
+        display: grid;
+        grid-template-columns: auto auto auto;
+    }
+
+    .grid-item {
+        padding: 20px;
+    }
+</style>
+
+
+<body>
+    <br />
+    <br />
+    <h1>Images of any file type</h1>
+    <h3>.........."UploadedFiles/" folder</h3>
+    <br />
+    <br />
+    <div class="body-content" style="background-color:lightgray">
+        <br />
+        <br />
+        <div class="grid-container">
+            @foreach (var item in Model)
+            {
+                <div class="card grid-item" style="inset-inline:auto; width:60%">
+
+                    @if (!string.IsNullOrEmpty(item.Link))
+                    {
+
+
+                        <a data-toggle="modal" data-target="@String("#", item.Id.ToString())"><img class="img-responsive" src="@Url.Content(item.Link)" width="160" height="160" /></a>
+                        <br />
+                        <p>@item.FileName</p>
+
+                        <script>
+                            $('#exampleModal').on('show.bs.modal', function (event) {
+                                var button = $(event.relatedTarget)
+                                var recipient = button.data('recipient')
+                                var modal = $(this)
+                                modal.find('.modal-title').text('New message to ' + recipient)
+                                modal.find('.modal-body input').val(recipient)
+                            })
+                        </script>
+
+                        <div class="modal fade" id=@item.Id.ToString() tabindex="-1" role="dialog" aria-labelledby=+@item.Id.ToString() aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+
+                                    <img class="img-responsive" src="@Url.Content(item.Link)" width="2000" height="200" />
+
+                                </div>
+                            </div>
+                        </div>
+
+                    }
+                    <br />
+
+                    @Html.ActionLink("Download", "Download", new { id = item.Id }, new { @class = "btn btn-success" })
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id }, new { @class = "btn btn-danger" })
+
+                </div>
+
+            }
+        </div>
+        <br />
+        <br />
+    </div>
+    <script>
+        $(document).ready(function ($) {
+            $(".gallery a").fancybox();
+        });
+    </script>
+</body>
+
